@@ -1,0 +1,16 @@
+- name: EPEL enabled
+  yum:
+    name: epel-release
+    state: present
+
+- name: packages installed
+  yum:
+    name:
+      - python34-pip
+      - git
+      - python34-setuptools
+      - uwsgi
+      - uwsgi-plugin-python3
+      - python34-devel
+      - gcc
+      - net-tools

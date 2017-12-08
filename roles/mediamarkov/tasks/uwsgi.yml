@@ -1,0 +1,12 @@
+- name: template uwsgi systemd service file
+  template:
+    src: systemd.j2
+    dest: "{{ service_file_dest }}"
+
+- name: uwsgi enabled and restarted
+  systemd:
+    daemon_reload: yes
+    enabled: yes
+    state: restarted
+    name: "{{ service_file_name }}"
+  changed_when: false

@@ -1,0 +1,6 @@
+---
+app_name: flowriter_studio
+app_user: markov
+keyfile: id_rsa
+# Module that starts flask site
+flask_object_module: gen_time

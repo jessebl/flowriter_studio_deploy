@@ -1,0 +1,28 @@
+---
+# Required packages
+- import_tasks: packages.yml
+
+- name: app user
+  user:
+    name: "{{ app_user }}"
+    home: "{{ app_user_home }}"
+    shell: /bin/bash
+    state: present
+
+- name: pip packages
+  pip:
+    executable: pip3
+    name:
+      - setuptools
+      - flask
+      - markovify
+      - bs4
+      - nltk
+      - uwsgi
+      - uwsgiconf
+
+# Deploy app in its directory
+- import_tasks: app_dir.yml
+
+# Start uwsgi for app on port 8000
+- import_tasks: uwsgi.yml

@@ -1,0 +1,11 @@
+[Unit]
+Description=uWSGI instance to serve {{ app_name }}
+After=network.target
+
+[Service]
+User={{ app_user }}
+WorkingDirectory={{ app_dir }}
+ExecStart=/usr/sbin/uwsgi --socket 0.0.0.0:8000 --protocol=http --plugins python3 -w {{ flask_object_module }} --callable app
+
+[Install]
+WantedBy=multi-user.target

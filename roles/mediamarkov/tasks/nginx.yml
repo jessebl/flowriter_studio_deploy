@@ -1,0 +1,16 @@
+- name: nginx site directory exists
+  file:
+    dest: "{{ nginx_site_dir }}"
+    state: directory
+
+- name: template nginx site for app
+  template:
+    src: nginx_app.j2
+    dest: "{{ nginx_site_dir }}/{{ app_name }}.conf"
+
+- name: nginx enabled and restarted
+  systemd:
+    enabled: yes
+    state: restarted
+    name: nginx.service
+  changed_when: false
