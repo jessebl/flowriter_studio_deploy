@@ -3,5 +3,5 @@ app_user_home: /home/{{ app_user }}
 app_dir: "{{ app_user_home}}/{{ app_name }}"
 ssh_dir: "{{ app_user_home}}/.ssh"
 keyfile_dest: "{{ ssh_dir }}/id_rsa"
-service_file_name: mediamarkov.service
+service_file_name: "{{ app_name }}.service"
 service_file_dest: /etc/systemd/system/{{ service_file_name }}
