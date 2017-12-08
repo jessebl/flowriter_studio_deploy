@@ -14,3 +14,15 @@
       - python34-devel
       - gcc
       - net-tools
+
+- name: pip packages
+  pip:
+    executable: pip3
+    name:
+      - setuptools
+      - flask
+      - markovify
+      - bs4
+      - nltk
+      - uwsgi
+      - uwsgiconf
