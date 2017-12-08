@@ -1,0 +1,5 @@
+---
+- name: restart uwsgi
+  systemd:
+    name: "{{ service_file_name }}"
+    state: restarted

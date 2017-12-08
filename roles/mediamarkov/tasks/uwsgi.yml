@@ -2,11 +2,12 @@
   template:
     src: systemd.j2
     dest: "{{ service_file_dest }}"
+  # Notify in case of, e.g. port change
+  notify: restart uwsgi
 
-- name: uwsgi enabled and restarted
+- name: uwsgi enabled and started
   systemd:
     daemon_reload: yes
     enabled: yes
-    state: restarted
+    state: started
     name: "{{ service_file_name }}"
-  changed_when: false
