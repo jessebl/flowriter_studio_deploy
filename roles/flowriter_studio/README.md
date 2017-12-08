@@ -15,7 +15,7 @@ Defaults:
     # Deployment name for the app
     app_name: flowriter_studio
     # User which runs the app
-    app_user: markov
+    app_user: flowriter_studio
     # Port on which flowriter_studio runs
     app_port: 8000
     # Keyfile for flowriter_studio repo
@@ -47,7 +47,7 @@ Example Playbook
 
     - hosts: servers
       roles:
-         - { role: mediamarkov, app_port: 8000 }
+         - { role: flowriter_studio, app_port: 8000 }
 
 License
 -------
