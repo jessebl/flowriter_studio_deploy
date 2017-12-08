@@ -8,21 +8,20 @@
     name:
       - python34-pip
       - git
-      - python34-setuptools
-      - uwsgi
-      - uwsgi-plugin-python3
-      - python34-devel
-      - gcc
-      - net-tools
+      - python34-setuptools     # For uwsgi pip install
+      - uwsgi-plugin-python3    # For using flask modules
+      - python34-devel  # For uwsgi pip install
+      - gcc     # For uwsgi pip install
+      - net-tools       # for netstat (debugging)
 
 - name: pip packages
   pip:
     executable: pip3
     name:
-      - setuptools
+      - setuptools      # For uwsgi pip install
       - flask
-      - markovify
-      - bs4
-      - nltk
-      - uwsgi
+      - markovify       # App dependency
+      - bs4     # App dependency
+      - nltk    # App dependency
+      - uwsgi   # HTTP-compatible server
       - uwsgiconf

@@ -5,7 +5,7 @@
     owner: "{{ app_user }}"
     group: "{{ app_user }}"
 
-- name: sync repo ssh private key
+- name: copy repo ssh private key
   copy:
     src: "{{ keyfile }}"
     dest: "{{ keyfile_dest }}"
@@ -13,7 +13,7 @@
     group: "{{ app_user }}"
     mode: 0600
 
-- name: sync repo ssh public key
+- name: copy repo ssh public key
   copy:
     src: "{{ keyfile }}.pub"
     dest: "{{ keyfile_dest }}.pub"

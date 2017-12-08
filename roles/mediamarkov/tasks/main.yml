@@ -2,6 +2,7 @@
 # Required packages
 - import_tasks: packages.yml
 
+# User created for running app
 - name: app user
   user:
     name: "{{ app_user }}"
