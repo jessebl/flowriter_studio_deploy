@@ -13,15 +13,24 @@
       - python34-devel  # For uwsgi pip install
       - gcc     # For uwsgi pip install
       - net-tools       # for netstat (debugging)
+      - python-virtualenv
 
-- name: pip packages
+- name: server pip packages
   pip:
     executable: pip3
     name:
       - setuptools      # For uwsgi pip install
+      - uwsgi   # HTTP-compatible server for running as service
+      - uwsgiconf
+
+- name: app pip packages for virtualenv
+  pip:
+    name:
       - flask
       - markovify       # App dependency
       - bs4     # App dependency
       - nltk    # App dependency
-      - uwsgi   # HTTP-compatible server
-      - uwsgiconf
+    virtualenv: "{{ app_virtualenv }}"
+    virtualenv_command: virtualenv
+    virtualenv_python: python3
+    virtualenv_site_packages: yes
