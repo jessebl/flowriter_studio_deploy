@@ -1,6 +1,8 @@
 # Ansible deployment for flowriter_studio
 
-Using Ansible as root on a CentOS server, deploy flowriter_studio on port 8000.
+Using Ansible with root/sudo privilege on CentOS and Ubuntu, deploy
+flowriter_studio. Defaults to running on port 8000, and is configured as a
+`systemd` service.
 
 ## Usage
 

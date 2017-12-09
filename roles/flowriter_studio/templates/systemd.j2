@@ -5,7 +5,7 @@ After=network.target
 [Service]
 User={{ app_user }}
 WorkingDirectory={{ app_dir }}
-ExecStart=/usr/sbin/uwsgi --socket 0.0.0.0:{{ app_port }} --protocol=http --plugins python3 -w {{ flask_object_module }} --callable app -H {{ app_virtualenv }}
+ExecStart={{ uwsgi_path.stdout }} --socket 0.0.0.0:{{ app_port }} --protocol=http --plugins python3 -w {{ flask_object_module }} --callable app -H {{ app_virtualenv }}
 
 [Install]
 WantedBy=multi-user.target

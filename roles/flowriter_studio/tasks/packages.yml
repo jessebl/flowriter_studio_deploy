@@ -2,8 +2,10 @@
   yum:
     name: epel-release
     state: present
+  when: ansible_pkg_mgr == 'yum'
+  become: root
 
-- name: packages installed
+- name: yum packages installed
   yum:
     name:
       - python34-pip
@@ -14,6 +16,22 @@
       - gcc     # For uwsgi pip install
       - net-tools       # for netstat (debugging)
       - python-virtualenv
+  when: ansible_pkg_mgr == 'yum'
+  become: root
+
+- name: apt packages installed
+  apt:
+    name:
+      - python3-pip
+      - git
+      - python3-setuptools     # For uwsgi pip install
+      - uwsgi-plugin-python3    # For using flask modules
+      - python3-dev  # For uwsgi pip install
+      - gcc     # For uwsgi pip install
+      - net-tools       # for netstat (debugging)
+      - python-virtualenv
+  when: ansible_pkg_mgr == 'apt'
+  become: root
 
 - name: server pip packages
   pip:
@@ -22,6 +40,12 @@
       - setuptools      # For uwsgi pip install
       - uwsgi   # HTTP-compatible server for running as service
       - uwsgiconf
+  become: root
+
+- name: get uwsgi path
+  shell: "command -v uwsgi"
+  register: uwsgi_path
+  changed_when: false
 
 - name: app pip packages for virtualenv
   pip:

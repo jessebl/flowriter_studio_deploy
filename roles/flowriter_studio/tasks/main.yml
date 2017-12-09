@@ -9,9 +9,11 @@
     home: "{{ app_user_home }}"
     shell: /bin/bash
     state: present
+  become: root
 
 # Deploy app in its directory
 - import_tasks: app_dir.yml
 
 # Enable and start uwsgi for app on port 8000
 - import_tasks: uwsgi.yml
+  become: root

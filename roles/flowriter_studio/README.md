@@ -28,6 +28,8 @@ Vars:
     app_user_home: /home/{{ app_user }}
     # Directory for app data
     app_dir: "{{ app_user_home}}/{{ app_name }}"
+    # Directory for app pip packages
+    app_virtualenv: "{{ app_user_home }}/{{ app_name }}_virtualenv"
     # Directory for ssh keys
     ssh_dir: "{{ app_user_home}}/.ssh"
     # Destination for ssh keys
