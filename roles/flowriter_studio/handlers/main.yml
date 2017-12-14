@@ -2,5 +2,8 @@
 - name: restart uwsgi
   systemd:
     name: "{{ service_file_name }}"
+    daemon-reload: yes
     state: restarted
   become: root
+  # Use 'when' since tags aren't supported for handlers
+  when: service_file is defined

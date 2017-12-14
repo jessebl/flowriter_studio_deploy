@@ -4,6 +4,7 @@
     dest: "{{ service_file_dest }}"
   # Notify in case of, e.g. port change
   notify: restart uwsgi
+  register: service_file
 
 - name: uwsgi enabled and started
   systemd:
