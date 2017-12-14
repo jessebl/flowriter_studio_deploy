@@ -6,3 +6,4 @@ keyfile: id_rsa
 # Module that starts flask site
 flask_object_module: app
 git_branch: master
+log_file: /var/log/{{ app_name }}.log
