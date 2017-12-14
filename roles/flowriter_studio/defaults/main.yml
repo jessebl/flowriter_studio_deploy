@@ -4,4 +4,5 @@ app_user: flowriter_studio
 app_port: 8000
 keyfile: id_rsa
 # Module that starts flask site
-flask_object_module: gen_time
+flask_object_module: app
+git_branch: master

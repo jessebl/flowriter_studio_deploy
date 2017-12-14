@@ -28,6 +28,7 @@
     key_file: "{{ keyfile_dest }}"
     accept_hostkey: yes
     update: yes
+    version: "{{ git_branch }}"
   become: yes
   become_user: "{{ app_user }}"
 
