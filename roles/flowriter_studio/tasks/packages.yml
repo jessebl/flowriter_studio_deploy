@@ -4,6 +4,7 @@
     state: present
   when: ansible_pkg_mgr == 'yum'
   become: root
+  tags: root
 
 - name: yum packages installed
   yum:
@@ -12,26 +13,18 @@
       - git
       - python34-setuptools     # For uwsgi pip install
       - uwsgi-plugin-python3    # For using flask modules
+      - uwsgi-logger-systemd    # For logging uwsgi
       - python34-devel  # For uwsgi pip install
       - gcc     # For uwsgi pip install
       - net-tools       # for netstat (debugging)
       - python-virtualenv
+      - sudo
+      - libxml2-devel   # For lxml pip install
+      - libxml2-python  # For lxml pip install
+      - libxslt-devel   # For lxml pip install
   when: ansible_pkg_mgr == 'yum'
   become: root
-
-- name: apt packages installed
-  apt:
-    name:
-      - python3-pip
-      - git
-      - python3-setuptools     # For uwsgi pip install
-      - uwsgi-plugin-python3    # For using flask modules
-      - python3-dev  # For uwsgi pip install
-      - gcc     # For uwsgi pip install
-      - net-tools       # for netstat (debugging)
-      - python-virtualenv
-  when: ansible_pkg_mgr == 'apt'
-  become: root
+  tags: root
 
 - name: server pip packages
   pip:
@@ -54,7 +47,19 @@
       - markovify       # App dependency
       - bs4     # App dependency
       - nltk    # App dependency
+      - lyricwikia
+      - spotipy
+      - textstat
+      - lxml
     virtualenv: "{{ app_virtualenv }}"
     virtualenv_command: virtualenv
     virtualenv_python: python3
     virtualenv_site_packages: yes
+  become: yes
+  become_user: "{{ app_user }}"
+
+- name: punkt installed by nltk downloader
+  changed_when: false
+  command: "{{ app_virtualenv }}/bin/python3 -m nltk.downloader punkt"
+  become: yes
+  become_user: "{{ app_user }}"
